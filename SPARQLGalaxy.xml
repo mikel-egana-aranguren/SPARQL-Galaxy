@@ -1,0 +1,56 @@
+<tool id="SPARQLGalaxy" name="Execute an SPARQL query against an OWL ontology" version="1.0.1">
+	<description>It executes an SPARQL query against the input OWL ontology and generates a two column tab file with the variables and bound entities</description>
+	<command>
+	  java -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 -jar ${__tool_data_path__}/shared/jars/SPARQLGalaxy.jar $ontology $query_file > $output 2>/dev/null 
+	</command>
+	<inputs>
+		<param name="ontology" type="data" label="Input ontology file"/>
+		<param name="query_file" type="data" label="Input SPARQL query file"/>
+	</inputs>
+	<outputs>
+		<data format="text" name="output" />
+	</outputs>
+	<!--<tests>
+		<test>
+			<param name="input" value="test.owl"/>
+			<param name="OPPL" value="test.oppl"/>
+			<param name="format" value="OWL"/>
+			<param name="reasoner" value="Pellet"/>
+			<output name="out_file" file="test_new.owl"/>	
+		</test>
+	</tests>-->
+	<help>
+
+**Usage**
+
+  An OWL ontology in RDF/XML syntax and a plain text file with the SPARQL are needed. See bundle for examples.
+
+**More information**
+
+  Galaxy public instance with SPARQL-Galaxy pre-installed:
+  
+  http://biordf.org:8090/
+  
+  SPARQL: 
+  
+  http://www.w3.org/standards/techs/sparql
+ 
+  JENA:
+  
+  http://jena.apache.org/
+  
+**Authors and funding**
+
+  Alejandro Rodríguez González is funded by the Isaac Peral Programme and developed the Java wrapper for JENA.
+  
+  Mikel Egaña Aranguren is funded by the Marie Curie Cofund programme and developed the XML file for this tool.
+  
+  They both belong to the Biological Informatics group of the CBGP, Spain (http://wilkinsonlab.info/).
+
+**Contact**
+
+  Please send any request or comment to mikel.egana.aranguren@gmail.com.
+
+	</help>
+
+</tool>
