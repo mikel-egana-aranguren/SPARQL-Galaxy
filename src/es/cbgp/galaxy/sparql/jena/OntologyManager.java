@@ -2,14 +2,14 @@ package es.cbgp.galaxy.sparql.jena;
 
 import java.io.File;
 
-import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 public class OntologyManager {
 
 	private String ontFile;
 	private String sparqlFile;
-	private OntModel model;
+	private Model model;
 	private SPARQLQueryEngine sqe;
 
 	public OntologyManager(String of, String sf) throws Exception {
@@ -19,7 +19,7 @@ public class OntologyManager {
 	}
 
 	private void init() throws Exception {
-		this.model = ModelFactory.createOntologyModel();
+		this.model = ModelFactory.createDefaultModel();
 		this.model.read(new File(ontFile).toURI().toString());
 	}
 

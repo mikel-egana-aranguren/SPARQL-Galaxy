@@ -4,16 +4,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Iterator;
 
-import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.query.*;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.shared.Lock;
 
 public class SPARQLQueryEngine {
 
-	private OntModel queryModel;
+	private Model queryModel;
 	private String sparqlFile;
 
-	public SPARQLQueryEngine(OntModel om) {
+	public SPARQLQueryEngine(Model om) {
 		this.queryModel = om;
 	}
 
@@ -33,9 +34,8 @@ public class SPARQLQueryEngine {
 				Iterator<String> vars = qs.varNames();
 				while (vars.hasNext()) {
 					String var = vars.next();
-					if (!qs.getResource(var).isAnon()) {
-						res += "?" + var + "\t" + qs.getResource(var) + "\n";
-					}
+					res += "?" + var + "\t" + getValue(qs, var) + "\r\n";
+
 				}
 			}
 			return res;
@@ -48,6 +48,38 @@ public class SPARQLQueryEngine {
 			}
 		}
 		return null;
+	}
+
+	private String getValue(QuerySolution qs, String var) {
+		RDFNode n = qs.get(var);
+		return n.toString();
+		
+//		System.out.println("RDFNode (" + var + "): " + n);
+//		try {
+//			if (!qs.getResource(var).isAnon()) {
+//				if (qs.getResource(var).isResource()) {
+//					return qs.getResource(var).toString();
+//				}
+//				if (qs.getResource(var).isLiteral()) {
+//					return qs.getLiteral(var).toString();
+//				}
+//			}
+//		} catch (Exception e) {
+//
+//		}
+//		try {
+//			if (!qs.getLiteral(var).isAnon()) {
+//				if (qs.getResource(var).isResource()) {
+//					return qs.getResource(var).toString();
+//				}
+//				if (qs.getResource(var).isLiteral()) {
+//					return qs.getLiteral(var).toString();
+//				}
+//			}
+//		} catch (Exception e) {
+//
+//		}
+//		return "Error";
 	}
 
 	private String loadQueryFromFile() throws Exception {

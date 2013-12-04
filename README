@@ -1,5 +1,13 @@
-INSTALLATION VIA MERCURIAL (RECOMMENDED)
-========================================
+INSTALLATION VIA TOOL-SHED
+==========================
+
+1.- Install through Admin >> Search and browse tool sheds
+
+2.- Copy SPARQLGalaxy.jar and SPARQLGalaxy_TEXT.jar to galaxy-dist/tool-data/shared/jars/ 
+
+
+INSTALLATION VIA MERCURIAL
+==========================
 
 1.- Stop Galaxy.
 
@@ -9,7 +17,7 @@ INSTALLATION VIA MERCURIAL (RECOMMENDED)
 
 hg clone http://mikel-egana-aranguren@toolshed.g2.bx.psu.edu/repos/mikel-egana-aranguren/sparql_galaxy
 
-4.- Move to galaxy-dist/tools/sparql_galaxy and copy SPARQLGalaxy.jar to galaxy-dist/tool-data/shared/jars/
+4.- Move to galaxy-dist/tools/sparql_galaxy and copy SPARQLGalaxy.jar and SPARQLGalaxy_TEXT.jar to galaxy-dist/tool-data/shared/jars/
 
 5.- Add the following lines to /galaxy-dist/tool_conf.xml:
 
@@ -45,7 +53,7 @@ Download and uncompress anywhere you like, and then:
 
 1.- Stop Galaxy.
 
-2.- SPARQLGalaxy.jar to galaxy-dist/tool-data/shared/jars/
+2.- Copy SPARQLGalaxy.jar and SPARQLGalaxy_TEXT.jar to galaxy-dist/tool-data/shared/jars/
  
 3.- Create directory galaxy-dist/tools/sparql_galaxy/
 
