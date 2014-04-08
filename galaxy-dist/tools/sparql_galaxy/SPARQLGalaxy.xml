@@ -2,13 +2,13 @@
 	<description>It executes an SPARQL query against the input RDF file and generates a two column tab file with the variables and bound entities</description>
 	<command>
 	  #if $query_type.choose_input_query_type=="query_file"
-	    java -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 -jar ${__tool_data_path__}/shared/jars/SPARQLGalaxy.jar $ontology $query_type.query_file_from_history > $output 2>/dev/null 
+	    ${__tool_data_path__}/shared/errwrap.sh java -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 -jar ${__tool_data_path__}/shared/jars/SPARQLGalaxy.jar $ontology $query_type.query_file_from_history > $output  
 	  #else
-	    java -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 -jar ${__tool_data_path__}/shared/jars/SPARQLGalaxy_TEXT.jar $ontology "$query_type.pasted_query" > $output 2>/dev/null
+	    ${__tool_data_path__}/shared/errwrap.sh java -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 -jar ${__tool_data_path__}/shared/jars/SPARQLGalaxy_TEXT.jar $ontology "$query_type.pasted_query" > $output 
 	  #end if
 	</command>
 	<inputs>
-		<param name="ontology" type="data" label="Input RDF file"/>		   
+		<param name="ontology" type="data" format="rdf" label="Input RDF file"/>		   
 		<conditional name="query_type">
 			<param name="choose_input_query_type" type="select" label="Choose input query type">
 			  <option value="query_file">Query file from history</option>
@@ -27,15 +27,6 @@
 	<outputs>
 		<data format="text" name="output" />
 	</outputs>
-	<!--<tests>
-		<test>
-			<param name="input" value="test.owl"/>
-			<param name="OPPL" value="test.oppl"/>
-			<param name="format" value="OWL"/>
-			<param name="reasoner" value="Pellet"/>
-			<output name="out_file" file="test_new.owl"/>	
-		</test>
-	</tests>-->
 	<help>
 
 **Usage**
