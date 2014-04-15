@@ -1,91 +1,47 @@
-INSTALLATION VIA TOOL-SHED
-==========================
+SPARQL-Galaxy
+=============
 
-1.- Install through Admin >> Search and browse tool sheds
+ABOUT
+-----
 
-2.- Copy SPARQLGalaxy.jar and SPARQLGalaxy_TEXT.jar to galaxy-dist/tool-data/shared/jars/ 
+Execute SPARQL queries against RDF datasets in Galaxy. The query can be pasted or uploaded as a file.
 
 
-INSTALLATION VIA MERCURIAL
-==========================
+INSTALLATION
+------------
 
-1.- Stop Galaxy.
+1. Stop Galaxy.
 
-2.- Move to galaxy-dist/tools/
+2. Download or clone with mercurial (`hg clone http://mikel-egana-aranguren@toolshed.g2.bx.psu.edu/repos/mikel-egana-aranguren/sparql_galaxy`).
 
-3.- Clone the SPARQL-Galaxy repository with mercurial: 
+3. Copy everything under galaxy-dist/ to your server's galaxy-dist/ (i.e. recreate the tools/ and tool-data/ directories in your server).
 
-hg clone http://mikel-egana-aranguren@toolshed.g2.bx.psu.edu/repos/mikel-egana-aranguren/sparql_galaxy
+4. Add the following lines to your server's /galaxy-dist/tool_conf.xml:
 
-4.- Move to galaxy-dist/tools/sparql_galaxy and copy SPARQLGalaxy.jar and SPARQLGalaxy_TEXT.jar to galaxy-dist/tool-data/shared/jars/
-
-5.- Add the following lines to /galaxy-dist/tool_conf.xml:
-
+```
   <section name="SPARQL-Galaxy" id="SPARQLGalaxy">
     <tool file="sparql_galaxy/SPARQLGalaxy.xml"/>
   </section>
-
-6.- Start Galaxy.
-
-For updates: 
-
-1.- Stop Galaxy.
-
-2.- Move to galaxy-dist/tools/sparql_galaxy/
-
-3.- Pull changes and update working copy with mercurial: 
-
-hg pull
-hg update
-
-4.- Copy SPARQLGalaxy.jar to galaxy-dist/tool-data/shared/jars/
-
-5.- Only edit galaxy-dist/tool_conf.xml in case a tool (an XML file) has been added/removed.
-
-6.- Start Galaxy.
-
-
-
-MANUAL INSTALLATION (DIRECT DOWNLOAD)
-=====================================
-
-Download and uncompress anywhere you like, and then:
-
-1.- Stop Galaxy.
-
-2.- Copy SPARQLGalaxy.jar and SPARQLGalaxy_TEXT.jar to galaxy-dist/tool-data/shared/jars/
- 
-3.- Create directory galaxy-dist/tools/sparql_galaxy/
-
-4.- Copy SPARQLGalaxy.xml to galaxy-dist/tools/sparql_galaxy/
-
-5.- Add the following lines to /galaxy-dist/tool_conf.xml:
-
-  <section name="SPARQL-Galaxy" id="SPARQLGalaxy">
-    <tool file="sparql_galaxy/SPARQLGalaxy.xml"/>
-  </section>
-
-6.- Start Galaxy.
-
+```
+  
+5. Start Galaxy.
 
 
 CONTACT
-=======
+-------
 
 Please send any request or comment to mikel.egana.aranguren@gmail.com.
 
 
-
 ACKNOWLEDGEMENTS
-================
+----------------
 
 This work is funded by the Marie Curie Cofund program of the EU, FP7, 
-and the Isaac Peral Program.
-
+and the Genomic Resources group of the UPV-EHU.
 
 
 COPYRIGHT AND LICENSE
-=====================
+---------------------
 
 Copyright (c) 2011 Mikel Egaña Aranguren, Alejandro Rodriguez Gonzalez 
 
