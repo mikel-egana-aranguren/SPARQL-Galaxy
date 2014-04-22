@@ -25,7 +25,7 @@
 		</conditional>
 	</inputs>
 	<outputs>
-		<data format="text" name="output" />
+		<data format="html" name="output" />
 	</outputs>
 	<help>
 

@@ -29,13 +29,20 @@ public class SPARQLQueryEngine {
 			qexec = QueryExecutionFactory.create(query, queryModel);
 			ResultSet results = qexec.execSelect();
 			String res = "";
+			System.out.println("<b>Variable</b> -- <b>Value</b><br/><br/>");
 			while (results.hasNext()) {
 				QuerySolution qs = results.next();
 				Iterator<String> vars = qs.varNames();
 				while (vars.hasNext()) {
 					String var = vars.next();
-					res += "?" + var + "\t" + getValue(qs, var) + "\r\n";
-
+					if(isLiteral(qs, var)){
+						res += "?" + var + " -- " + getValue(qs, var) + "<br/>";
+						System.out.println(res);
+					}
+					else{
+						res += "?" + var + " -- " + "<a href=\"" + getValue(qs, var) +"\">" + getValue(qs, var) + "</a><br/>";
+						System.out.println(res);
+					}
 				}
 			}
 			return res;
@@ -49,10 +56,15 @@ public class SPARQLQueryEngine {
 		}
 		return null;
 	}
-
+	private static boolean isLiteral (QuerySolution qs, String var){
+		RDFNode n = qs.get(var);
+		return n.isLiteral();
+	}
 	private String getValue(QuerySolution qs, String var) {
 		RDFNode n = qs.get(var);
 		return n.toString();
+		
+		
 		
 //		System.out.println("RDFNode (" + var + "): " + n);
 //		try {

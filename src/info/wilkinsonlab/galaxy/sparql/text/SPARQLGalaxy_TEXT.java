@@ -33,13 +33,20 @@ public class SPARQLGalaxy_TEXT {
 		QueryExecution qe = QueryExecutionFactory.create(query, model);
 		ResultSet results = qe.execSelect();
 		String res = "";
+		System.out.println("<b>Variable</b> -- <b>Value</b><br/><br/>");
 		while (results.hasNext()) {
 			QuerySolution qs = results.next();
 			Iterator<String> vars = qs.varNames();
 			while (vars.hasNext()) {
 				String var = vars.next();
-				res += "?" + var + "\t" + getValue(qs, var) + "\r\n";
-				System.out.println(res);
+				if(isLiteral(qs, var)){
+					res += "?" + var + " -- " + getValue(qs, var) + "<br/>";
+					System.out.println(res);
+				}
+				else{
+					res += "?" + var + " -- " + "<a href=\"" + getValue(qs, var) +"\">" + getValue(qs, var) + "</a><br/>";
+					System.out.println(res);
+				}
 			}
 		}
 	}
@@ -47,5 +54,10 @@ public class SPARQLGalaxy_TEXT {
 	private static String getValue(QuerySolution qs, String var) {
 		RDFNode n = qs.get(var);
 		return n.toString();
+	}
+	
+	private static boolean isLiteral (QuerySolution qs, String var){
+		RDFNode n = qs.get(var);
+		return n.isLiteral();
 	}
 }
