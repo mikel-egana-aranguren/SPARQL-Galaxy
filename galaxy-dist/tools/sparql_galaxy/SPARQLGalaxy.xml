@@ -1,37 +1,26 @@
 <tool id="SPARQLGalaxy" name="Execute an SPARQL query against an RDF file" version="1.0.1">
-	<description>It executes an SPARQL query against the input RDF file and generates a two column tab file with the variables and bound entities</description>
-	<command>
-	  #if $query_type.choose_input_query_type=="query_file"
-	    ${__tool_data_path__}/shared/errwrap.sh java -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 -jar ${__tool_data_path__}/shared/jars/SPARQLGalaxy.jar $ontology $query_type.query_file_from_history > $output  
-	  #else
-	    ${__tool_data_path__}/shared/errwrap.sh java -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 -jar ${__tool_data_path__}/shared/jars/SPARQLGalaxy_TEXT.jar $ontology "$query_type.pasted_query" > $output 
-	  #end if
+	<description>It executes an SPARQL query against the input RDF file and generates an HTML file with the variables and bound entities</description>
+	<command interpreter="python">
+	  sparql.py $ontology "$pasted_query" > $output 2>/dev/null
 	</command>
 	<inputs>
 		<param name="ontology" type="data" format="rdf" label="Input RDF file"/>		   
-		<conditional name="query_type">
-			<param name="choose_input_query_type" type="select" label="Choose input query type">
-			  <option value="query_file">Query file from history</option>
-			  <option value="paste_query">Paste query</option>
-			</param>
-			<when value="query_file">
-			  <param name="query_file_from_history" type="data" label="Input SPARQL query file"/>
-			</when>
-			<when value="paste_query">
-			  <param name="pasted_query" type="text" area="True" size="10x50" label="SPARQL Query" value="SELECT * WHERE { ?s ?p ?o }">
-			    <sanitizer sanitize="False"/>
-			  </param>
-			</when>
-		</conditional>
+		<param name="pasted_query" type="text" area="True" size="10x50" label="SPARQL Query" value="SELECT * WHERE { ?s ?p ?o }">
+		  <sanitizer sanitize="False"/>
+		</param>
 	</inputs>
 	<outputs>
 		<data format="html" name="output" />
 	</outputs>
 	<help>
+	  
+**Important note**
+
+  RDFLib must be installed on the system (http://github.com/RDFLib/rdflib).
 
 **Usage**
 
-  An RDF file (in any format that Jena can accept) and a plain text file (pasted or from history) with the SPARQL query are needed. See bundle for examples.
+  An RDF file (in any format that RDFLib can accept) and a SPARQL query are needed. See bundle for examples.
 
 **More information**
 
@@ -46,18 +35,6 @@
   SPARQL: 
   
   http://www.w3.org/standards/techs/sparql
- 
-  JENA:
-  
-  http://jena.apache.org/
-  
-**Authors and funding**
-
-  Alejandro Rodríguez González is funded by the Isaac Peral Programme and developed the Java wrapper for JENA.
-  
-  Mikel Egaña Aranguren is funded by the Marie Curie Cofund programme and developed the XML file for this tool.
-  
-  They both belong to the Biological Informatics group of the CBGP, Spain (http://wilkinsonlab.info/).
 
 **Contact**
 

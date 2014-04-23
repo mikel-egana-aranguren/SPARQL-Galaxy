@@ -4,7 +4,7 @@ SPARQL-Galaxy
 ABOUT
 -----
 
-Execute SPARQL queries against RDF datasets in Galaxy. The query can be pasted or uploaded as a file.
+Execute SPARQL queries against RDF datasets in Galaxy. 
 
 
 INSTALLATION
@@ -14,7 +14,7 @@ INSTALLATION
 
 2. Download or clone with mercurial (`hg clone http://mikel-egana-aranguren@toolshed.g2.bx.psu.edu/repos/mikel-egana-aranguren/sparql_galaxy`).
 
-3. Copy everything under galaxy-dist/ to your server's galaxy-dist/ (i.e. recreate the tools/ and tool-data/ directories in your server).
+3. Copy everything under galaxy-dist/ to your server's galaxy-dist/ (i.e. recreate the tools/ and directory in your server).
 
 4. Add the following lines to your server's /galaxy-dist/tool_conf.xml:
 
@@ -40,24 +40,5 @@ This work is funded by the Marie Curie Cofund program of the EU, FP7,
 and the Genomic Resources group of the UPV-EHU.
 
 
-COPYRIGHT AND LICENSE
----------------------
-
-Copyright (c) 2011 Mikel Egaña Aranguren, Alejandro Rodriguez Gonzalez 
-
-SPARQL-Galaxy is free software: you can redistribute it and/or modify it under the
-terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your
-option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-JENA has its own license.
 
 
