@@ -4,11 +4,13 @@ SPARQL-Galaxy
 ABOUT
 -----
 
-Execute SPARQL queries against RDF datasets in Galaxy. 
+Execute SPARQL queries against RDF datasets in Galaxy, obtaining HTML or tab delimited results.
 
 
 INSTALLATION
 ------------
+
+RDFLib (http://github.com/RDFLib/rdflib) should be installed on the system.
 
 1. Stop Galaxy.
 
