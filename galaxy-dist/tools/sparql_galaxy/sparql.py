@@ -39,6 +39,9 @@ def tab_render(results):
         for value in binding.values():  
             if isinstance(value, rdflib.term.URIRef):
                 print value + "\t",
+	    else:
+		print value + "\t",	
+	print "\n"
 
 if __name__ == "__main__":
     main(sys.argv)
